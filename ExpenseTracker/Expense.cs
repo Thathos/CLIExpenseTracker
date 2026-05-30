@@ -19,5 +19,6 @@ namespace ExpenseTracker
             Amount = amount;
             Id = id;
         }
+
     }
 }

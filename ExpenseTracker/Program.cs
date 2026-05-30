@@ -28,16 +28,9 @@
                     decimal expAmount = decimal.Parse(Console.ReadLine());
                     Expense newExpense = new Expense(expName, expAmount, idCounter++); //create expense form user input
                     expensesList.Add(newExpense); //add to the expense list
-                    Console.WriteLine("Would you like to make another transaction?");
-                    int goAgain = int.Parse(Console.ReadLine());
-                    if (goAgain == 1)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        appLoop = false;
-                    }
+                    //Console.WriteLine("Would you like to make another transaction?");
+                    //int goAgain = int.Parse(Console.ReadLine());
+                    continue;
                 }
                 else if (userChoice == 2)
                 {
@@ -51,11 +44,13 @@
                 {
                     foreach (Expense expense in expensesList)
                     {
-                        Console.WriteLine($"{expense.Name}");
+                        Console.WriteLine($"ID: {expense.Id} Expense: {expense.Name}  Amount {expense.Amount}");
                     }
+                    continue;
                 }
                 else if (userChoice == 5)
                 {
+                    ViewSummary(expensesList);
                     //summary of all expenses
                 }
                 else if (userChoice == 6)
@@ -65,9 +60,24 @@
                 else if (userChoice == 7)
                 {
                     Console.WriteLine("Goodbye!");
-                    appLoop = false;
+                    appLoop = false; 
                 }
             }
         }
+        public static void ViewSummary(List<Expense> expenses)
+        {
+            //decimal total = 0;
+            //for (int i = 0; i< expenses.Count; i++)
+            //{
+            //    total += expenses.Amount;
+            //}
+            decimal total = 0;
+            foreach (Expense expense in expenses)
+            {
+                total += expense.Amount;
+            }
+            Console.WriteLine($"Total expenses: {total}");
+        }
+
     }
 }
