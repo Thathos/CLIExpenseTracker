@@ -38,14 +38,16 @@
                 }
                 else if (userChoice == 3)
                 {
-                    //delete expense
+                    Console.WriteLine("Here are you expenses.");
+                    ViewExpenses(expensesList);
+                    Console.WriteLine("Please enter the ID of the task you would like to delete.");
+                    int removeTask = int.Parse(Console.ReadLine());
+                    //expensesList.RemoveAll(e => e.Id == )
+                    DeleteExpense(expensesList, removeTask); //delete expense
                 }
                 else if (userChoice == 4)
                 {
-                    foreach (Expense expense in expensesList)
-                    {
-                        Console.WriteLine($"ID: {expense.Id} Expense: {expense.Name}  Amount {expense.Amount}");
-                    }
+                    ViewExpenses(expensesList);
                     continue;
                 }
                 else if (userChoice == 5)
@@ -77,6 +79,20 @@
                 total += expense.Amount;
             }
             Console.WriteLine($"Total expenses: {total}");
+        }
+
+        public static void ViewExpenses(List<Expense> expenses)
+        {
+            foreach (Expense expense in expenses)
+            {
+                Console.WriteLine($"ID: {expense.Id} Expense: {expense.Name}  Amount {expense.Amount}");
+            }
+
+        }
+
+        public static void DeleteExpense(List<Expense> expenses, int id)
+        {
+            expenses.RemoveAll(e => e.Id == id);
         }
 
     }
