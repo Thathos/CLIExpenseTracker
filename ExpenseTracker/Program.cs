@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            int idCounter = 0;
+            int idCounter = 1;
             List<Expense> expensesList = new List<Expense>(); //list to hold list of expenses
             bool appLoop = true;
             while (appLoop)
@@ -28,12 +28,23 @@
                     decimal expAmount = decimal.Parse(Console.ReadLine());
                     Expense newExpense = new Expense(expName, expAmount, idCounter++); //create expense form user input
                     expensesList.Add(newExpense); //add to the expense list
-                    //Console.WriteLine("Would you like to make another transaction?");
-                    //int goAgain = int.Parse(Console.ReadLine());
                     continue;
                 }
                 else if (userChoice == 2)
                 {
+                    Console.WriteLine("Please enter the ID of the expense you would like to update");
+                    int getExpense = int.Parse(Console.ReadLine());
+                    foreach (Expense expense in expensesList)
+                    {
+                        if (getExpense == expense.Id)
+                        {
+                            //Console.WriteLine($"Found expense {expense.Name}");
+                            Console.WriteLine("Updating expense amount.");
+                            decimal updateAmount = decimal.Parse(Console.ReadLine());
+                            expense.Amount = updateAmount;
+                        }
+                    }
+
                     //update expense
                 }
                 else if (userChoice == 3)
@@ -68,11 +79,6 @@
         }
         public static void ViewSummary(List<Expense> expenses)
         {
-            //decimal total = 0;
-            //for (int i = 0; i< expenses.Count; i++)
-            //{
-            //    total += expenses.Amount;
-            //}
             decimal total = 0;
             foreach (Expense expense in expenses)
             {
